@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Can : MonoBehaviour {
-
+	public float value = 0.1f; 
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -18,6 +19,9 @@ public class Can : MonoBehaviour {
 			Debug.Log("collision");
 			// shake the camera here..
 			Destroy(gameObject);
+			other.audio.Play();
+			BurpMeter burpMeter = GameObject.FindGameObjectWithTag("BurpMeter").GetComponent<BurpMeter>();
+			burpMeter.score(value);
 		}
 	}
 }

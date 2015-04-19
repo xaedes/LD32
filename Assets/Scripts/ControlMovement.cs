@@ -15,7 +15,7 @@ public class ControlMovement : MonoBehaviour {
 		float h = Input.GetAxisRaw("Horizontal");
 		
 		// Move the player around the scene.
-		movement.Move(h, 0);
+		movement.Move(movement.speed*h, 0);
 		
 	}
 }

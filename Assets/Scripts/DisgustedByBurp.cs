@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class DisgustedByBurp : MonoBehaviour {
-	
+	float value = 0f;
+	float gain = 0.1f;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,15 +11,18 @@ public class DisgustedByBurp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		value = gain * 0 + (1-gain) * value;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log("other");
 		Burp burp = other.GetComponentInParent<Burp>();
 		if(burp != null){
-			Debug.Log("disgusting");
-			SendMessage("Disgusted");
+			value += burp.drain;
+//			SendMessage("Disgusted");
 		}
+	}
+
+	public float Value() {
+		return value;
 	}
 }

@@ -8,11 +8,13 @@ public class Burp : MonoBehaviour {
 
 	BurpMeter burpMeter;
 	SpriteRenderer burpSprite;
+	Collider2D burpCollider;
 	
 	// Use this for initialization
 	void Awake () {
 		burpMeter = GameObject.FindGameObjectWithTag("BurpMeter").GetComponent<BurpMeter>();
 		burpSprite = GameObject.FindGameObjectWithTag("Burp").GetComponent<SpriteRenderer>();
+		burpCollider = GameObject.FindGameObjectWithTag("Burp").GetComponent<Collider2D>();
 		countdown = 0;
 	}
 	
@@ -28,23 +30,31 @@ public class Burp : MonoBehaviour {
 			if(drained > 0) {
 				audio.Stop();
 				audio.Play();
-				burpSprite.enabled = true;
-				Invoke("disableBurp", audio.clip.length);
+				enable();
+				Invoke("disable", audio.clip.length);
 			}
 		}
 
-		if(burpSprite.enabled) {
+		if(enabled()) {
 			Color c = burpSprite.color;
 			c.a = 1 - audio.time / audio.clip.length;
 			burpSprite.color = c;
 		}
 
 	}
-
-	void disableBurp() {
-		burpSprite.enabled = false;
-		
+	bool enabled() {
+		return burpSprite.enabled;
 	}
+	void enable() {
+		burpSprite.enabled = true;
+		burpCollider.enabled = true;
+	}
+
+	void disable() {
+		burpSprite.enabled = false;
+		burpCollider.enabled = false;
+	}
+
 
 
 }

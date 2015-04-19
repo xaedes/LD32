@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DisgustedByBurp : MonoBehaviour {
 	float value = 0f;
-	float gain = 0.1f;
+	float gain = 0.2f;
 	// Use this for initialization
 	void Start () {
 	
@@ -17,7 +17,7 @@ public class DisgustedByBurp : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		Burp burp = other.GetComponentInParent<Burp>();
 		if(burp != null){
-			value += burp.drain;
+			value += burp.strength;
 //			SendMessage("Disgusted");
 		}
 	}

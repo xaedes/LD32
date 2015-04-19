@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour {
 			float g = 0.0015f;
 			direction = g * (-1) + (1-g) * direction;
 		}
+
 		movement.Move(direction*movement.speed,0);
 	}
 

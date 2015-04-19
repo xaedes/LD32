@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Burp : MonoBehaviour {
 	public float drain = 0.1f;
+	public float strength = 0.1f;
 	public float cooldown = 1f;
 	float countdown = 0;
 
@@ -27,11 +28,13 @@ public class Burp : MonoBehaviour {
 			countdown = cooldown;
 			float desired = drain;
 			float drained = burpMeter.drain(desired);
-			if(drained > 0) {
+			if(drained >= drain) {
 				audio.Stop();
 				audio.Play();
 				enable();
 				Invoke("disable", audio.clip.length);
+			} else {
+				burpMeter.score(drained);
 			}
 		}
 

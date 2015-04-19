@@ -6,19 +6,22 @@ public class BurpMeter : MonoBehaviour {
 	float value = 0f;
 	float gain = 0.3f;
 
-	// Use this for initialization
-	void Start () {
-		
+	Scrollbar scrollbar;
+
+	void Awake () {
+		scrollbar = gameObject.GetComponentInChildren<Scrollbar>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		Scrollbar scrollbar = gameObject.GetComponentInChildren<Scrollbar>();
+	void FixedUpdate () {
 		scrollbar.value = gain * value + (1-gain) * scrollbar.value;
 	}
 
 	public void score(float v) {
 		value += v;
+		if(value > 1) {
+			value = 1;
+		}
 	}
 
 	public float drain(float desired) {

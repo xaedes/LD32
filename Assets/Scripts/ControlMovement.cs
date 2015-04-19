@@ -5,7 +5,7 @@ public class ControlMovement : MonoBehaviour {
 	Movement movement;
 
 	void Awake () {
-		movement = GetComponent <Movement>();
+		movement = GetComponent<Movement>();
 	}
 	
 	

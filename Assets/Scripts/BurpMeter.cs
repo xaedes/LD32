@@ -20,4 +20,12 @@ public class BurpMeter : MonoBehaviour {
 	public void score(float v) {
 		value += v;
 	}
+
+	public float drain(float desired) {
+		if(desired > value) {
+			desired = value;
+		}
+		value -= desired;
+		return desired;
+	}
 }

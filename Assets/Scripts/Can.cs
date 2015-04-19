@@ -3,10 +3,13 @@ using System.Collections;
 
 public class Can : MonoBehaviour {
 	public float value = 0.1f; 
-	
+	PlayAudioAndSelfDestruct playAudio;
+	BurpMeter burpMeter;
+
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () {
+		playAudio = GetComponent<PlayAudioAndSelfDestruct>();
+		burpMeter = GameObject.FindGameObjectWithTag("BurpMeter").GetComponent<BurpMeter>();
 	}
 	
 	// Update is called once per frame
@@ -16,12 +19,14 @@ public class Can : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if(other.tag == "Player"){
-			Debug.Log("collision");
-			// shake the camera here..
-			Destroy(gameObject);
-			other.audio.Play();
-			BurpMeter burpMeter = GameObject.FindGameObjectWithTag("BurpMeter").GetComponent<BurpMeter>();
 			burpMeter.score(value);
+			playAudio.PlayAudio();
+			SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
+			Color c = sprite.color;
+			c.a = 0;
+			sprite.color = c;
 		}
 	}
+
+
 }

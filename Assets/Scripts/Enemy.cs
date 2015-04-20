@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
+	public Transform can;
 	Movement movement;
 	DisgustedByBurp disgusted;
 	float direction = 0;
@@ -32,8 +33,7 @@ public class Enemy : MonoBehaviour {
 		movement.Move(direction*movement.speed,0);
 	}
 
-//	void Disgusted() {
-//		Debug.Log("Disgusted");
-//		direction = 1;
-//	}
+	void Disgusted() {
+		audio.Play();
+	}
 }

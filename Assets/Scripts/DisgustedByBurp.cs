@@ -18,7 +18,7 @@ public class DisgustedByBurp : MonoBehaviour {
 		Burp burp = other.GetComponentInParent<Burp>();
 		if(burp != null){
 			value += burp.strength;
-//			SendMessage("Disgusted");
+			SendMessage("Disgusted");
 		}
 	}
 
